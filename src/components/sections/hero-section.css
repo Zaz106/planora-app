@@ -1,33 +1,184 @@
-/* Full-screen hero with gradient fallback so users see something before WebGL mounts */
-.hero-section {
-	min-height: 100svh;
-	position: relative;
-	overflow: hidden;
-	/* Subtle gradient fallback */
-	background: linear-gradient(180deg, rgba(0, 40, 60, 0.6) 0%, rgba(0, 10, 20, 0.9) 60%, rgba(0, 0, 0, 1) 100%);
+/* Hero Section Styles - Mobile First */
+.hero {
+  position: relative;
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  /* 3-color gradient: white dominant at top, pink/purple middle, orange bottom */
+  background: linear-gradient(180deg, #ffffff 0%, #ffffff 30%, #f3e8ff 60%, #fed7aa 100%);
+  overflow: visible;
+  padding: 0 1rem;
+  padding-top: calc(10vh + 20vh); /* Navigation height + 20vh spacing */
 }
 
-.hero-content {
-	position: absolute;
-	inset: 0;
-	display: grid;
-	place-items: center;
-	padding: 1.25rem;
+.hero__container {
+  max-width: 800px;
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+  gap: 2rem;
+  z-index: 10;
+  position: relative;
 }
 
-.hero-cta {
-	background: #ffffff;
-	color: #003344;
-	border: none;
-	border-radius: 8px;
-	padding: 0.75rem 1.1rem;
-	font-weight: 600;
-	cursor: pointer;
-	transition: transform 0.15s ease, filter 0.2s ease;
+.hero__content {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 1.5rem;
+  max-width: 600px;
 }
-.hero-cta:hover { transform: translateY(-1px); filter: brightness(0.95); }
-.hero-cta:active { transform: translateY(0); filter: brightness(0.9); }
 
-@media (max-width: 640px) {
-	.hero-content h1 { font-size: 1.75rem; }
+.hero__badge {
+  align-self: center;
+}
+
+.hero__title {
+  font-size: clamp(3.8rem, 10vw, 3.2rem);
+  font-weight: 600;
+  line-height: 1.1;
+  color: var(--foreground);
+  margin: 0;
+}
+
+.hero__title-highlight {
+  color: var(--grey);
+  font-weight: 600;
+}
+
+.hero__description {
+  font-size: clamp(0.8rem, 8vw, 0.8rem);
+  color: var(--secondary);
+  line-height: 1.6;
+  max-width: 500px;
+}
+
+.hero__image-container {
+  position: absolute;
+  top: calc(30vh + 20vh); /* Start after header + badge spacing + some content */
+  left: 50%;
+  transform: translateX(-50%);
+  width: 100%;
+  max-width: 280px;
+  height: 400px;
+  background: rgba(255, 255, 255, 0.6);
+  border-radius: 1rem;
+  border: 2px dashed #e5e7eb;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: var(--secondary);
+  font-size: 1rem;
+  backdrop-filter: blur(10px);
+  box-shadow: 0 10px 25px rgba(0, 0, 0, 0.1);
+  z-index: 20;
+}
+
+
+/* Mobile Styles (Base - Mobile First) */
+@media (max-width: 480px) {
+  .hero {
+    padding: 0 0.75rem;
+    padding-top: calc(10vh + 20vh);
+  }
+  
+  .hero__container {
+    gap: 1.5rem;
+  }
+  
+  .hero__image-container {
+    max-width: 280px;
+    height: 400px;
+    top: calc(30vh + 25vh);
+  }
+}
+
+/* Small Tablet Styles */
+@media (min-width: 481px) and (max-width: 615px) {
+  .hero {
+    padding-top: calc(10vh + 20vh);
+  }
+  
+  .hero__image-container {
+    max-width: 320px;
+    height: 420px;
+    top: calc(30vh + 22vh);
+  }
+  
+  .hero__container {
+    gap: 1.75rem;
+  }
+}
+
+/* Medium Tablet Styles */
+@media (min-width: 616px) and (max-width: 768px) {
+  .hero {
+    padding-top: calc(10vh + 20vh);
+  }
+  
+  .hero__image-container {
+    max-width: 350px;
+    height: 450px;
+    top: calc(30vh + 20vh);
+  }
+  
+  .hero__container {
+    gap: 2rem;
+  }
+}
+
+/* Large Tablet Styles */
+@media (min-width: 769px) and (max-width: 1023px) {
+  .hero {
+    padding-top: calc(10vh + 20vh);
+  }
+  
+  .hero__image-container {
+    max-width: 380px;
+    height: 500px;
+    top: calc(30vh + 18vh);
+  }
+  
+  .hero__container {
+    gap: 2rem;
+  }
+}
+
+/* Desktop Styles */
+@media (min-width: 1024px) {
+  .hero {
+    padding-top: calc(10vh + 20vh);
+  }
+  
+  .hero__container {
+    max-width: 900px;
+    gap: 2.5rem;
+  }
+  
+  .hero__image-container {
+    max-width: 450px;
+    height: 600px;
+    top: calc(30vh + 15vh);
+  }
+}
+
+/* Large Desktop Styles */
+@media (min-width: 1440px) {
+  .hero {
+    padding-top: calc(10vh + 20vh);
+  }
+  
+  .hero__container {
+    max-width: 1000px;
+    gap: 3rem;
+  }
+  
+  .hero__image-container {
+    max-width: 500px;
+    height: 650px;
+    top: calc(30vh + 12vh);
+  }
 }
