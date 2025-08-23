@@ -1,3 +1,50 @@
-1. Overview 
-2. Rules 
+## YOU DO NOT TOUCH THIS FILE, We will manually update the checklist when we are satisfied. 
+This file simply acts as a guide for you on the context of our app as well as the goals. 
+You do not need to try implament all the features one by one, we will work with you in doing so. 
+Work only as the tasks given to you in the prompting interface.
+
+1. Overview
+Planora is a Next.js web application built with TypeScript and standard CSS.  
+It is designed as a micro-learning platform with daily streak-based lessons, progress tracking, and modular reusable components.  
+The application follows a clean, scalable architecture with reusable React components, functional programming practices, and a modern, responsive UI/UX.  
+
+Core technologies:
+- Next.js (routing, SSR/SSG)
+- React with TypeScript (typed components, hooks)
+- Standard CSS (modular, reusable styles)
+- Firebase (auth, storage, db) [if included later]
+
+Key features:
+- Authentication (login/signup)
+- Daily streak tracking
+- Learning paths with modular lessons
+- Spaced repetition flashcards
+- Social leaderboards
+- Freemium and subscription monetization support
+
+2. Rules
+- Always use TypeScript with strict typing.
+- Follow the Next.js file structure:  
+  • `pages/` for routes  
+  • `components/` for reusable UI elements  
+  • `styles/` for global and modular CSS  
+  • `lib/` for utilities (API, helpers, hooks)  
+- Components must be reusable, modular, and follow the DRY principle.
+- CSS should use utility classes where possible and maintain consistent spacing, typography, and color usage.
+- Keep code readable and maintainable (consistent naming, comments for non-obvious logic).
+- Respect performance best practices (lazy loading, code splitting, caching).
+- Prioritize accessibility (semantic HTML, aria attributes, proper contrast).
+- Maintain responsiveness across mobile, tablet, desktop.
+- Only add dependencies if necessary—avoid bloat.
+
 3. Checklist
+[ ] Create reusable layout components (Header, Footer, Sidebar, Button, Input, Card).  
+[ ] Implement authentication (login/signup with form validation).  
+[ ] Build the Overview (home) page with engaging sections (value proposition, features, testimonials, CTA).  
+[ ] Build the App page (daily lessons, streaks, flashcards, progress bar).  
+[ ] Add dark theme styling inspired by Firebase Studio.  
+[ ] Ensure mobile-first responsive design.  
+[ ] Add contact page with form and social links.  
+[ ] Optimize for accessibility and performance.  
+[ ] Add analytics placeholders for user progress tracking.  
+[ ] Prepare for monetization integrations (subscription + microtransactions).  
