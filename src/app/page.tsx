@@ -1,5 +1,9 @@
-import { redirect } from "next/navigation";
+import HeroSection from "@/components/sections/hero-section";
 
-export default function RootPage() {
-  redirect("/overview");
+export default function OverviewPage() {
+  return (
+    <main>
+      <HeroSection />
+    </main>
+  );
 }
