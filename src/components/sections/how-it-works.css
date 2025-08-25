@@ -1,0 +1,209 @@
+/* How It Works Section Component Styles */
+
+/* Base Container */
+.how-it-works {
+  position: relative;
+  padding: 8rem 0 5rem 0; /* Increased top padding to push down */
+  background: var(--background);
+  overflow: hidden;
+  z-index: 100; /* Same z-index as video placeholder */
+}
+
+.how-it-works-container {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 0 1rem;
+}
+
+/* Header */
+.how-it-works-header {
+  text-align: center;
+  margin-bottom: 4rem;
+  max-width: 600px;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+.how-it-works-title {
+  font-family: var(--font-sans);
+  font-size: 3rem;
+  font-weight: 500;
+  color: var(--foreground);
+  margin-bottom: 1rem;
+  letter-spacing: -0.025em;
+}
+
+.how-it-works-subtitle {
+  font-family: var(--font-sans);
+  font-size: 0.9rem;
+  color: var(--secondary);
+  line-height: 1.6;
+  font-weight: 400;
+}
+
+/* Steps Container */
+.how-it-works-steps {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 2rem;
+  align-items: start;
+}
+
+@media (max-width: 1024px) {
+  .how-it-works-steps {
+    grid-template-columns: repeat(2, 1fr);
+    gap: 2rem;
+  }
+  
+  .how-it-works-steps .step-card:last-child {
+    grid-column: 1 / -1;
+    max-width: 500px;
+    margin: 0 auto;
+  }
+}
+
+@media (max-width: 768px) {
+  .how-it-works-steps {
+    grid-template-columns: 1fr;
+    gap: 1.5rem;
+  }
+  
+  .how-it-works-steps .step-card:last-child {
+    grid-column: 1;
+    max-width: none;
+    margin: 0;
+  }
+}
+
+/* Step Card */
+.step-card {
+  background: rgba(255, 255, 255, 0.6);
+  border-radius: 1rem;
+  padding: 2rem;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  backdrop-filter: blur(10px);
+  transition: all 0.3s ease;
+  position: relative;
+  overflow: hidden;
+}
+
+.step-card:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 8px 16px rgba(0, 0, 0, 0.15);
+  background: rgba(255, 255, 255, 0.8);
+}
+
+/* Step Icon */
+.step-icon {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-bottom: 1.5rem;
+}
+
+.step-icon-placeholder {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 64px;
+  height: 64px;
+  background: rgba(133, 133, 133, 0.1);
+  border-radius: 16px;
+  color: rgb(68, 68, 68);
+  flex-shrink: 0;
+  margin: 0 auto;
+}
+
+/* Step Content */
+.step-content {
+  flex: 1;
+  text-align: center;
+}
+
+.step-title {
+  font-family: var(--font-sans);
+  font-size: 1.5rem;
+  font-weight: 600;
+  color: var(--foreground);
+  margin-bottom: 0.75rem;
+  letter-spacing: -0.025em;
+}
+
+.step-description {
+  font-family: var(--font-sans);
+  font-size: 1rem;
+  color: var(--secondary);
+  line-height: 1.6;
+  font-weight: 400;
+}
+
+/* Responsive Design */
+@media (min-width: 1025px) {
+  .how-it-works {
+    padding: 15vh 0 5rem 0; /* Extra space for large screens */
+  }
+}
+
+@media (max-width: 1024px) {
+  .how-it-works {
+    padding: 4rem 0;
+  }
+}
+
+@media (max-width: 768px) {
+  .how-it-works {
+    padding: 3rem 0;
+  }
+  
+  .how-it-works-header {
+    margin-bottom: 3rem;
+  }
+  
+  .how-it-works-title {
+    font-size: 2rem;
+  }
+  
+  .how-it-works-subtitle {
+    font-size: 1rem;
+  }
+  
+  .step-card {
+    padding: 1.5rem;
+  }
+  
+  .step-title {
+    font-size: 1.25rem;
+  }
+  
+  .step-description {
+    font-size: 0.9rem;
+  }
+  
+  .step-icon-placeholder {
+    width: 56px;
+    height: 56px;
+  }
+}
+
+@media (max-width: 480px) {
+  .how-it-works {
+    padding: 2rem 0;
+  }
+  
+  .how-it-works-container {
+    padding: 0 0.75rem;
+  }
+  
+  .step-card {
+    padding: 1.25rem;
+  }
+  
+  .step-icon {
+    margin-bottom: 1rem;
+  }
+  
+  .step-icon-placeholder {
+    width: 48px;
+    height: 48px;
+  }
+}

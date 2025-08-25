@@ -47,4 +47,4 @@ Key features:
 [ ] Add contact page with form and social links.  
 [ ] Optimize for accessibility and performance.  
 [ ] Add analytics placeholders for user progress tracking.  
-[ ] Prepare for monetization integrations (subscription + microtransactions).  
+[ ] Prepare for monetization integrations (subscription + microtransactions).
