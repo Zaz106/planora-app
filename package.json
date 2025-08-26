@@ -8,6 +8,7 @@
     "start": "next start"
   },
   "dependencies": {
+    "motion": "^12.23.12",
     "next": "15.5.0",
     "ogl": "^1.0.11",
     "react": "19.1.0",

@@ -7,9 +7,9 @@
   overflow: visible;
   padding: 0;
   z-index: 1;
+  padding-top: 10vh;
   border-bottom-left-radius: 1rem;
   border-bottom-right-radius: 1rem;
-  padding-top: 10vh;
 }
 
 /* Floating Content Wrapper */
@@ -69,7 +69,7 @@
 
 .hero-description {
   font-size: clamp(0.8rem, 8vw, 0.8rem);
-  color:#7c7c7c;
+  color: #7c7c7c;
   line-height: 1.6;
   max-width: 500px;
 }
@@ -96,7 +96,9 @@
 /* Responsive Design */
 @media (max-width: 646px) {
   .hero-content {
-    transform: translateY(-20%); /* Keep original position for smaller screens */
+    transform: translateY(
+      -20%
+    ); /* Keep original position for smaller screens */
   }
 }
 
@@ -110,11 +112,11 @@
   .hero-content-wrapper {
     padding-top: min(calc(10vh + 12vh), 22vh);
   }
-  
+
   .hero-content {
     gap: 1.5rem;
   }
-  
+
   .hero-mobile-cta {
     display: block;
   }
@@ -124,11 +126,11 @@
   .hero-content-wrapper {
     padding-top: min(calc(10vh + 15vh), 25vh);
   }
-  
+
   .hero-content {
     gap: 1.75rem;
   }
-  
+
   .hero-mobile-cta {
     display: block;
   }
@@ -138,11 +140,11 @@
   .hero-content-wrapper {
     padding-top: min(calc(10vh + 16vh), 26vh);
   }
-  
+
   .hero-content {
     gap: 2rem;
   }
-  
+
   .hero-mobile-cta {
     display: block;
   }
@@ -152,11 +154,11 @@
   .hero-content-wrapper {
     padding-top: min(calc(10vh + 18vh), 28vh);
   }
-  
+
   .hero-content {
     gap: 2rem;
   }
-  
+
   .hero-mobile-cta {
     display: block;
   }
@@ -167,11 +169,11 @@
     padding-top: min(calc(10vh + 20vh), 30vh);
     max-width: 1200px;
   }
-  
+
   .hero-content {
     gap: 2.5rem;
   }
-  
+
   .hero-mobile-cta {
     display: none;
   }
@@ -181,7 +183,7 @@
   .hero-content-wrapper {
     max-width: 1400px;
   }
-  
+
   .hero-content {
     gap: 3rem;
   }

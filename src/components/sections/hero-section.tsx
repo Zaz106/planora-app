@@ -1,7 +1,7 @@
 "use client";
 import React from "react";
 import "./hero-section.css";
-import AnimatedSmoke from "@/components/ui/hero-bg";
+import AnimatedSmoke from "@/components/ui/animated-smoke";
 
 const HeroSection: React.FC = () => {
   return (
@@ -18,21 +18,21 @@ const HeroSection: React.FC = () => {
           pointerEvents: "auto" /* re-enable interactions for content */
         }}
       >
-        {/* Hero content and image positioned absolutely above hero */}
+        {/* Hero content */}
         <div className="hero-content-wrapper">
           <div className="hero-content">
             <span className="hero-badge">
-              Simplified Courses
+              Micro-Learning Platform
             </span>
             
             <h1 className="hero-title">
-              Work can and<br />
-              should be <span className="hero-title-highlight">interesting</span>
+              Learn something new<br />
+              <span className="hero-title-highlight">Everyday</span>
             </h1>
             
             <p className="hero-description">
-              The Financial Control Center is a powerful finance management application that 
-              helps you consolidate all your financial.
+              Build consistent learning habits with bite-sized lessons that fit your busy schedule. 
+              No more abandoned courses or guilt about unfinished tasks.
             </p>
             
             {/* Mobile CTA Button - only visible when nav items are hidden */}

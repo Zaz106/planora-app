@@ -1,0 +1,127 @@
+/* Tilted Card Section - With 3D Effect */
+
+.tilted-card-section {
+  position: relative;
+  padding: 2.5rem 1rem;
+  background: var(--background);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  min-height: 60vh;
+}
+
+.tilted-card-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 100%;
+  perspective: 1200px;
+}
+
+.tilted-card-placeholder {
+  width: 850px;
+  height: 550px;
+  max-width: 90vw;
+  max-height: 70vh;
+  background: #f3f4f6;
+  border: 2px solid #e0e0e0;
+  border-radius: 16px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  box-shadow: 0 5px 10px rgba(0, 0, 0, 0.1);
+  cursor: pointer;
+  transform-style: preserve-3d;
+  will-change: transform;
+  transition: box-shadow 0.3s ease;
+}
+
+.tilted-card-placeholder:hover {
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+}
+
+.placeholder-text {
+  font-family: var(--font-sans);
+  font-size: 16px;
+  font-weight: 500;
+  color: var(--grey);
+  text-align: center;
+  pointer-events: none;
+}
+
+/* Responsive scaling - proportional to new 850x550 base */
+@media (max-width: 1200px) {
+  .tilted-card-placeholder {
+    width: 680px;  /* 80% of 850 */
+    height: 440px; /* 80% of 550 */
+  }
+  
+  .placeholder-text {
+    font-size: 15px;
+  }
+  
+  .tilted-card-section {
+    padding: 2rem 1rem;
+    min-height: 55vh;
+  }
+}
+
+@media (max-width: 900px) {
+  .tilted-card-placeholder {
+    width: 510px;  /* 60% of 850 */
+    height: 330px; /* 60% of 550 */
+  }
+  
+  .placeholder-text {
+    font-size: 14px;
+  }
+  
+  .tilted-card-section {
+    padding: 2rem 1rem;
+    min-height: 50vh;
+  }
+}
+
+@media (max-width: 600px) {
+  .tilted-card-placeholder {
+    width: 425px;  /* 40% of 850 */
+    height: 275px; /* 40% of 550 */
+  }
+  
+  .placeholder-text {
+    font-size: 13px;
+  }
+  
+  .tilted-card-section {
+    padding: 1.5rem 1rem;
+    min-height: 45vh;
+  }
+}
+
+@media (max-width: 400px) {
+  .tilted-card-placeholder {
+    width: 340px;  /* 30% of 850 */
+    height: 220px; /* 30% of 550 */
+  }
+  
+  .placeholder-text {
+    font-size: 12px;
+  }
+  
+  .tilted-card-section {
+    padding: 1.5rem 0.5rem;
+    min-height: 40vh;
+  }
+}
+
+/* Reduced motion support only */
+@media (prefers-reduced-motion: reduce) {
+  .tilted-card-container {
+    perspective: none;
+  }
+  
+  .tilted-card-placeholder {
+    transform: none !important;
+    transition: box-shadow 0.2s ease;
+  }
+}

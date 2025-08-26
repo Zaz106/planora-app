@@ -2,6 +2,7 @@
 
 import React, { useState } from 'react';
 import Link from 'next/link';
+import Logo from '@/components/ui/logo';
 import './navigation.css';
 
 export const Navigation: React.FC = () => {
@@ -14,7 +15,7 @@ export const Navigation: React.FC = () => {
   return (
     <nav className="nav">
       <Link href="/" className="nav-brand">
-        <div className="nav-brand-icon">P</div>
+        <Logo size={40} />
         <span>Planora</span>
       </Link>
       

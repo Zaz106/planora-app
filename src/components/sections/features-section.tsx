@@ -1,73 +1,119 @@
 import React from 'react';
 import './features-section.css';
 
+interface BentoCardProps {
+  variant?: 'normal' | 'large' | 'wide';
+  image?: string;
+  title: string;
+  excerpt: string;
+  className?: string;
+}
+
+const BentoCard: React.FC<BentoCardProps> = ({ 
+  variant = 'normal', 
+  image, 
+  title, 
+  excerpt, 
+  className = '' 
+}) => {
+  return (
+    <li 
+      className={`bento-card bento-card--${variant} ${className}`}
+      tabIndex={0}
+    >
+      <div className="bento-card__content">
+        {image && (
+          <div className="bento-card__image">
+            <img 
+              src={image} 
+              alt={title}
+              loading="lazy"
+              style={{ objectFit: 'cover', width: '100%', height: '100%' }}
+            />
+          </div>
+        )}
+        <div className="bento-card__text">
+          <h3 className="bento-card__title">{title}</h3>
+          <p className="bento-card__excerpt">{excerpt}</p>
+        </div>
+      </div>
+    </li>
+  );
+};
+
+interface BentoGridProps {
+  children: React.ReactNode;
+  className?: string;
+}
+
+const BentoGrid: React.FC<BentoGridProps> = ({ children, className = '' }) => {
+  return (
+    <section className={`bento-grid ${className}`} aria-labelledby="features-title">
+      <ul className="bento-grid__container">
+        {children}
+      </ul>
+    </section>
+  );
+};
+
+// Sample card data - Large/wide items first to prevent grid holes
+const cardData = [
+  {
+    variant: 'large' as const,
+    title: 'Daily Streak Tracking',
+    excerpt: 'Build unstoppable learning momentum with daily streak tracking and accountability.',
+    image: '',
+    className: 'hero-card'
+  },
+  {
+    variant: 'wide' as const,
+    title: 'Accountability Groups',
+    excerpt: 'Join learning groups and stay motivated with peer support.',
+    image: ''
+  },
+  {
+    variant: 'large' as const,
+    title: 'Curated Learning Paths',
+    excerpt: 'Choose from expertly crafted paths in business writing, Excel shortcuts, and more.',
+    image: ''
+  },
+  {
+    variant: 'normal' as const,
+    title: '5-15 Minute Lessons',
+    excerpt: 'Bite-sized content that fits any schedule.',
+    image: ''
+  },
+  {
+    variant: 'normal' as const,
+    title: 'Smart Flashcards',
+    excerpt: 'Spaced repetition for maximum retention.',
+    image: ''
+  }
+];
+
 const FeaturesSection = () => {
   return (
     <section className="features-section">
       <div className="features-container">
         <div className="features-header">
-          <h2 className="features-title">Powerful Features</h2>
+          <h2 id="features-title" className="features-title">Powerful Features</h2>
           <p className="features-subtitle">
-            Everything you need to build consistent learning habits and track your progress effectively.
+            Everything you need to build consistent micro-learning habits and master new skills in just minutes a day.
           </p>
         </div>
         
-        <div className="features-grid">
-          <div className="feature-card highlighted-feature">
-            <div className="feature-image-container">
-              <div className="feature-image-placeholder">
-                Feature Image 1
-              </div>
-            </div>
-            <div className="feature-content">
-              <h3 className="feature-title">Streak Tracking</h3>
-              <p className="feature-description">
-                Monitor your daily learning streaks and build consistent habits that lead to long-term success. 
-                Visualize your progress with detailed analytics and milestone celebrations.
-              </p>
-              <div className="feature-stats">
-                <div className="stat-item">
-                  <span className="stat-number">95%</span>
-                  <span className="stat-label">Success Rate</span>
-                </div>
-                <div className="stat-item">
-                  <span className="stat-number">30+</span>
-                  <span className="stat-label">Days Average</span>
-                </div>
-              </div>
-            </div>
-          </div>
-
-          <div className="features-row">
-            <div className="feature-card">
-              <div className="feature-image-container">
-                <div className="feature-image-placeholder">
-                  Feature Image 2
-                </div>
-              </div>
-              <div className="feature-content">
-                <h3 className="feature-title">Smart Flashcards</h3>
-                <p className="feature-description">
-                  Interactive flashcards powered by spaced repetition algorithms to optimize your learning efficiency.
-                </p>
-              </div>
-            </div>
-
-            <div className="feature-card">
-              <div className="feature-image-container">
-                <div className="feature-image-placeholder">
-                  Feature Image 3
-                </div>
-              </div>
-              <div className="feature-content">
-                <h3 className="feature-title">Leaderboards</h3>
-                <p className="feature-description">
-                  Compete with friends and the community to stay motivated and reach new learning milestones together.
-                </p>
-              </div>
-            </div>
-          </div>
-        </div>
+        <BentoGrid>
+          {cardData.map((card, index) => (
+            <BentoCard
+              key={index}
+              variant={card.variant}
+              title={card.title}
+              excerpt={card.excerpt}
+              image={card.image}
+              className={card.className || ''}
+            />
+          ))}
+        </BentoGrid>
       </div>
     </section>
   );
