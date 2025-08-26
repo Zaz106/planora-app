@@ -1,5 +1,5 @@
 import React from "react";
-import "./hero-bg.css";
+import "./animated-smoke.css";
 
 type AnimatedSmokeProps = {
   /** Height of the background area (e.g. "70vh"). Use 100% if you wrap it. */

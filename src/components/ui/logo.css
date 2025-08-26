@@ -1,0 +1,88 @@
+/* Logo Component Styles */
+
+.logo-container {
+  position: relative;
+  display: inline-block;
+}
+
+.logo-background {
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(135deg, #fef3e28e 0%, #fed7aa83 15%, #fcb8c771 35%, #e9d5ffb6 60%, #f3e8ffaf 100%);
+  border-radius: 24%;
+  position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+}
+
+.logo-path {
+  position: absolute;
+  width: 90%;
+  height: 60%;
+  top: 23%;
+  left: -1%;
+  z-index: 1;
+}
+
+.logo-path path {
+  filter: drop-shadow(0 0 2px rgba(207, 207, 207, 0.1));
+}
+
+.logo-circle {
+  position: absolute;
+  background: white;
+  border-radius: 50%;
+  opacity: 0.95;
+  z-index: 2;
+}
+
+.logo-circle-1 {
+  width: 14%;
+  height: 14%;
+  top: 62%;
+  left: 15%;
+}
+
+.logo-circle-2 {
+  width: 13%;
+  height: 13%;
+  top: 50%;
+  left: 35%;
+}
+
+.logo-circle-3 {
+  width: 11%;
+  height: 11%;
+  top: 40%;
+  left: 54%;
+}
+
+.logo-sparkle {
+  position: absolute;
+  top: -2%;
+  right: 12%;
+  opacity: 0.95;
+  z-index: 3;
+}
+
+.logo-sparkle svg {
+  filter: drop-shadow(0 1px 2px rgba(0, 0, 0, 0.1));
+}
+
+/* Hover effect */
+.logo-container:hover .logo-background {
+  transform: scale(1.05);
+  transition: transform 0.2s ease;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+}
+
+.logo-container:hover .logo-sparkle {
+  animation: sparkle 0.6s ease;
+}
+
+@keyframes sparkle {
+  0%, 100% { transform: scale(1); }
+  50% { transform: scale(1.2); }
+}
