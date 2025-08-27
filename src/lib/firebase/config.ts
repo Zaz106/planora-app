@@ -3,29 +3,49 @@ import { initializeApp } from "firebase/app";
 import { getFirestore } from "firebase/firestore";
 
 function getFirebaseConfig() {
-  // Firebase App Hosting automatically injects config at runtime
-  if (typeof window !== "undefined" && (window as any).__FIREBASE_DEFAULTS__) {
-    console.log('Using Firebase App Hosting injected config');
-    return (window as any).__FIREBASE_DEFAULTS__.config;
+  // Debug: Log available environment variables in production
+  console.log('Environment debug:', {
+    FIREBASE_WEBAPP_CONFIG: typeof process !== "undefined" ? !!process.env.FIREBASE_WEBAPP_CONFIG : 'N/A',
+    FIREBASE_CONFIG: typeof process !== "undefined" ? !!process.env.FIREBASE_CONFIG : 'N/A',
+    NEXT_PUBLIC_FIREBASE_PROJECT_ID: process.env.NEXT_PUBLIC_FIREBASE_PROJECT_ID,
+    windowDefaults: typeof window !== "undefined" ? !!(window as any).__FIREBASE_DEFAULTS__ : 'N/A'
+  });
+
+  // Check for Firebase App Hosting injected webapp config (client-side)
+  if (typeof window !== "undefined" && process.env.FIREBASE_WEBAPP_CONFIG) {
+    try {
+      const config = JSON.parse(process.env.FIREBASE_WEBAPP_CONFIG);
+      console.log('Using Firebase App Hosting webapp config');
+      return config;
+    } catch (error) {
+      console.warn('Failed to parse FIREBASE_WEBAPP_CONFIG:', error);
+    }
   }
   
-  // For server-side rendering, check for injected server config
+  // Check for server-side Firebase config
   if (typeof process !== "undefined" && process.env.FIREBASE_CONFIG) {
     try {
-      const config = JSON.parse(process.env.FIREBASE_CONFIG);
-      console.log('Using server-side Firebase config');
+      const serverConfig = JSON.parse(process.env.FIREBASE_CONFIG);
+      console.log('Using Firebase App Hosting server config');
+      // Combine server config with any available webapp config
       return {
-        apiKey: process.env.NEXT_PUBLIC_FIREBASE_API_KEY || config.apiKey,
-        authDomain: config.authDomain || `${config.projectId}.firebaseapp.com`,
-        projectId: config.projectId,
-        storageBucket: config.storageBucket,
-        messagingSenderId: config.messagingSenderId,
-        appId: process.env.NEXT_PUBLIC_FIREBASE_APP_ID,
-        measurementId: process.env.NEXT_PUBLIC_FIREBASE_MEASUREMENT_ID
+        apiKey: process.env.NEXT_PUBLIC_FIREBASE_API_KEY || serverConfig.apiKey,
+        authDomain: serverConfig.authDomain || `${serverConfig.projectId}.firebaseapp.com`,
+        projectId: serverConfig.projectId,
+        storageBucket: serverConfig.storageBucket,
+        messagingSenderId: serverConfig.messagingSenderId || "",
+        appId: process.env.NEXT_PUBLIC_FIREBASE_APP_ID || "",
+        measurementId: process.env.NEXT_PUBLIC_FIREBASE_MEASUREMENT_ID || ""
       };
     } catch (error) {
       console.warn('Failed to parse FIREBASE_CONFIG:', error);
     }
+  }
+  
+  // Check for legacy Firebase defaults injection
+  if (typeof window !== "undefined" && (window as any).__FIREBASE_DEFAULTS__) {
+    console.log('Using Firebase defaults injection');
+    return (window as any).__FIREBASE_DEFAULTS__.config;
   }
   
   // Fallback to environment variables for local development
