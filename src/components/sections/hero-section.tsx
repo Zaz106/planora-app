@@ -39,7 +39,7 @@ const HeroSection: React.FC = () => {
             {/* Mobile CTA Button - only visible when nav items are hidden */}
             <Link href="/waiting-list">
               <button className="hero-mobile-cta">
-                Join Waitlist
+                Get Started
               </button>
             </Link>
           </div>

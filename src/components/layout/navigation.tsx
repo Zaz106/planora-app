@@ -29,7 +29,7 @@ export const Navigation: React.FC = () => {
       <div className="nav-actions">
         <button className="nav-btn nav-btn--login">Login</button>
         <Link href="/waiting-list">
-          <button className="nav-btn nav-btn--cta">Join Waitlist  →</button>
+          <button className="nav-btn nav-btn--cta">Let's Talk</button>
         </Link>
       </div>
       
@@ -48,12 +48,6 @@ export const Navigation: React.FC = () => {
           <li><Link href="/pricing" className="nav-link">Pricing</Link></li>
           <li><Link href="/contact" className="nav-link">Contact</Link></li>
         </ul>
-        <div className="nav-mobile-actions">
-          <button className="nav-btn nav-btn--login">Login</button>
-          <Link href="/waiting-list">
-            <button className="nav-btn nav-btn--cta">Join Waitlist  →</button>
-          </Link>
-        </div>
       </div>
     </nav>
   );
