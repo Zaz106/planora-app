@@ -31,9 +31,9 @@ yarn-debug.log*
 yarn-error.log*
 .pnpm-debug.log*
 
-# env files (allow .env.local since it contains no secrets)
-.env
-.env.production
+# env files (exclude all env files with secrets)
+.env*
+!.env.example
 
 # firestore rules (contains sensitive API keys)
 firestore.rules
