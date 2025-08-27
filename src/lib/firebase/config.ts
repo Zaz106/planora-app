@@ -3,42 +3,55 @@ import { initializeApp } from "firebase/app";
 import { getFirestore } from "firebase/firestore";
 
 function getFirebaseConfig() {
-  // Debug: Log available environment variables in production
+  // Debug: Log what's available
   console.log('Environment debug:', {
-    FIREBASE_WEBAPP_CONFIG: typeof process !== "undefined" ? !!process.env.FIREBASE_WEBAPP_CONFIG : 'N/A',
-    FIREBASE_CONFIG: typeof process !== "undefined" ? !!process.env.FIREBASE_CONFIG : 'N/A',
-    NEXT_PUBLIC_FIREBASE_PROJECT_ID: process.env.NEXT_PUBLIC_FIREBASE_PROJECT_ID,
-    windowDefaults: typeof window !== "undefined" ? !!(window as any).__FIREBASE_DEFAULTS__ : 'N/A'
+    NODE_ENV: process.env.NODE_ENV,
+    isProduction: process.env.NODE_ENV === 'production',
+    hasProjectId: !!process.env.NEXT_PUBLIC_FIREBASE_PROJECT_ID,
+    allFirebaseEnvs: typeof process !== "undefined" ? Object.keys(process.env).filter(key => key.includes('FIREBASE')) : []
   });
 
-  // Check for Firebase App Hosting injected webapp config (client-side)
-  if (typeof window !== "undefined" && process.env.FIREBASE_WEBAPP_CONFIG) {
+  // Try Firebase App Hosting's server-side config first
+  if (typeof process !== "undefined" && process.env.FIREBASE_CONFIG) {
+    try {
+      const serverConfig = JSON.parse(process.env.FIREBASE_CONFIG);
+      console.log('Using Firebase App Hosting server config');
+      
+      // For client-side, we need the web app credentials
+      // Firebase App Hosting should provide these through FIREBASE_WEBAPP_CONFIG or similar
+      let webConfig = serverConfig;
+      
+      if (process.env.FIREBASE_WEBAPP_CONFIG) {
+        try {
+          webConfig = JSON.parse(process.env.FIREBASE_WEBAPP_CONFIG);
+          console.log('Found FIREBASE_WEBAPP_CONFIG');
+        } catch (e) {
+          console.warn('Failed to parse FIREBASE_WEBAPP_CONFIG');
+        }
+      }
+      
+      return {
+        apiKey: webConfig.apiKey || serverConfig.apiKey,
+        authDomain: webConfig.authDomain || `${serverConfig.projectId}.firebaseapp.com`,
+        projectId: serverConfig.projectId,
+        storageBucket: serverConfig.storageBucket,
+        messagingSenderId: webConfig.messagingSenderId || serverConfig.messagingSenderId,
+        appId: webConfig.appId,
+        measurementId: webConfig.measurementId
+      };
+    } catch (error) {
+      console.warn('Failed to parse FIREBASE_CONFIG:', error);
+    }
+  }
+  
+  // Check for client-side webapp config
+  if (typeof process !== "undefined" && process.env.FIREBASE_WEBAPP_CONFIG) {
     try {
       const config = JSON.parse(process.env.FIREBASE_WEBAPP_CONFIG);
       console.log('Using Firebase App Hosting webapp config');
       return config;
     } catch (error) {
       console.warn('Failed to parse FIREBASE_WEBAPP_CONFIG:', error);
-    }
-  }
-  
-  // Check for server-side Firebase config
-  if (typeof process !== "undefined" && process.env.FIREBASE_CONFIG) {
-    try {
-      const serverConfig = JSON.parse(process.env.FIREBASE_CONFIG);
-      console.log('Using Firebase App Hosting server config');
-      // Combine server config with any available webapp config
-      return {
-        apiKey: process.env.NEXT_PUBLIC_FIREBASE_API_KEY || serverConfig.apiKey,
-        authDomain: serverConfig.authDomain || `${serverConfig.projectId}.firebaseapp.com`,
-        projectId: serverConfig.projectId,
-        storageBucket: serverConfig.storageBucket,
-        messagingSenderId: serverConfig.messagingSenderId || "",
-        appId: process.env.NEXT_PUBLIC_FIREBASE_APP_ID || "",
-        measurementId: process.env.NEXT_PUBLIC_FIREBASE_MEASUREMENT_ID || ""
-      };
-    } catch (error) {
-      console.warn('Failed to parse FIREBASE_CONFIG:', error);
     }
   }
   
