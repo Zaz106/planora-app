@@ -28,7 +28,9 @@ export const Navigation: React.FC = () => {
       
       <div className="nav-actions">
         <button className="nav-btn nav-btn--login">Login</button>
-        <button className="nav-btn nav-btn--cta">Let's Talk  →</button>
+        <Link href="/waiting-list">
+          <button className="nav-btn nav-btn--cta">Join Waitlist  →</button>
+        </Link>
       </div>
       
       <button 
@@ -48,7 +50,9 @@ export const Navigation: React.FC = () => {
         </ul>
         <div className="nav-mobile-actions">
           <button className="nav-btn nav-btn--login">Login</button>
-          <button className="nav-btn nav-btn--cta">Let's Talk  →</button>
+          <Link href="/waiting-list">
+            <button className="nav-btn nav-btn--cta">Join Waitlist  →</button>
+          </Link>
         </div>
       </div>
     </nav>

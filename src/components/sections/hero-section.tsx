@@ -1,5 +1,6 @@
 "use client";
 import React from "react";
+import Link from "next/link";
 import "./hero-section.css";
 import AnimatedSmoke from "@/components/ui/animated-smoke";
 
@@ -36,9 +37,11 @@ const HeroSection: React.FC = () => {
             </p>
             
             {/* Mobile CTA Button - only visible when nav items are hidden */}
-            <button className="hero-mobile-cta">
-              Get Started
-            </button>
+            <Link href="/waiting-list">
+              <button className="hero-mobile-cta">
+                Join Waitlist
+              </button>
+            </Link>
           </div>
         </div>
       </div>
