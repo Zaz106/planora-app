@@ -31,12 +31,10 @@ yarn-debug.log*
 yarn-error.log*
 .pnpm-debug.log*
 
-# env files (exclude all env files with secrets)
+# env files
 .env*
 !.env.example
-
-# firestore rules (contains sensitive API keys)
-firestore.rules
+!.env.production
 
 # vercel
 .vercel
