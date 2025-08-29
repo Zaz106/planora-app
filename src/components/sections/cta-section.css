@@ -1,0 +1,16 @@
+/* Compact CTA card based on wireframe */
+.cta-section{ padding: 3rem 0; background: #f6f7f8;}
+.cta-container{ max-width: 1100px; margin: 0 auto; padding: 0 1rem; }
+.cta-card{ background:#fff; border:1px solid rgba(0,0,0,.06); border-radius:16px; box-shadow:0 2px 10px rgba(0,0,0,.04); padding:1.25rem; display:grid; gap:.75rem; }
+.cta-header{ display:grid; gap:.35rem; }
+.cta-title{ font-family: var(--font-sans); font-weight:600; font-size:1.35rem; color:var(--foreground); letter-spacing:-0.01em; }
+.cta-subtitle{ color:var(--secondary); font-size:.95rem; }
+.cta-actions{ margin-top:.25rem; }
+.cta-btn{ display:inline-block; padding:.75rem 1.1rem; border-radius:10px; background:#111; color:#fff; text-decoration:none; border:1px solid rgba(0,0,0,.1); font-weight:600; }
+
+@media (min-width: 900px){
+  .cta-section{ padding: 4rem 0; }
+  .cta-card{ padding:1.75rem 2rem; grid-template-columns: 1fr auto; align-items:center; }
+  .cta-title{ font-size:1.75rem; }
+  .cta-actions{ margin-top:0; }
+}

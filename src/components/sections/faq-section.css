@@ -1,0 +1,87 @@
+.faq-section {
+  padding: 3rem 0;
+  background: var(--background);
+}
+.faq-container {
+  max-width: 900px;
+  margin: 0 auto;
+  padding: 0 1rem;
+}
+.faq-header {
+  text-align: center;
+  margin-bottom: 1.5rem;
+}
+.faq-title {
+  font-family: var(--font-sans);
+  font-weight: 500;
+  font-size: 1.75rem;
+  color: var(--foreground);
+  letter-spacing: -0.01em;
+}
+.faq-subtitle {
+  font-family: var(--font-sans);
+  color: var(--secondary);
+  font-size: 0.9rem;
+  margin-top: 0.25rem;
+  margin-bottom: 1.5rem;
+}
+
+.faq-list {
+  list-style: none;
+  padding: 0;
+  margin: 0.25rem 0 0;
+  display: grid;
+  gap: 0.5rem; /* tighter spacing between cards */
+}
+.faq-item {
+  border-radius: 12px;
+  background: #fff;
+  overflow: hidden;
+  box-shadow: 0 1px 2px rgba(0,0,0,0.04);
+}
+.faq-trigger {
+  width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 0.75rem;
+  padding: 1rem 1rem;
+  background: #fff;
+  border: 0;
+  text-align: left;
+  cursor: pointer;
+  font-family: var(--font-sans);
+  color: var(--foreground);
+  font-weight: 500;
+}
+.caret { transition: transform .2s ease; color: var(--foreground); flex: none; }
+.caret.open { transform: rotate(180deg); }
+
+.question {
+  font-size: 0.95rem;
+}
+.faq-panel {
+  padding: 0 1rem; /* fixed horizontal padding; vertical spacing handled by inner */
+  height: 0;
+  overflow: hidden;
+  display: block;
+  contain: layout style; /* reduce layout thrash around siblings */
+  will-change: height;
+}
+.panel-inner { padding: 0.25rem 0 1rem; }
+.faq-panel p {
+  overflow: hidden;
+  color: var(--secondary);
+  font-size: 0.95rem;
+  line-height: 1.6;
+  margin: 0; /* avoid margin toggles that cause height jumps */
+}
+
+@media (min-width: 720px) {
+  .faq-section {
+    padding: 4rem 0;
+  }
+  .faq-title {
+    font-size: 2rem;
+  }
+}

@@ -1,0 +1,236 @@
+/* Pricing Section - mobile first */
+:root {
+  /* use animated-smoke accent colors safely */
+  --accent-purple: var(--wave-purple-1);
+  --accent-orange: var(--wave-orange-1);
+}
+
+.pricing-section {
+  padding: 3rem 0;
+  background: #fafafa;
+}
+.pricing-container {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 0 1rem;
+}
+.pricing-header {
+  text-align: center;
+  margin-bottom: 2rem;
+  max-width: 640px;
+  margin-inline: auto;
+}
+.pricing-title {
+  font-family: var(--font-sans);
+  font-weight: 500;
+  font-size: 2rem;
+  color: var(--foreground);
+  letter-spacing: -0.02em;
+}
+.pricing-subtitle {
+  font-family: var(--font-sans);
+  color: var(--secondary);
+  font-size: 0.9rem;
+  margin-top: 0.5rem;
+  margin-bottom: 1.5rem;
+}
+
+/* equal-height grid cards */
+.pricing-grid {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 1rem;
+  min-height: 600px; /* increased height per request */
+}
+.pricing-card {
+  background: #fff;
+  border: 1px solid rgba(0, 0, 0, 0.06);
+  border-radius: 24px;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.04);
+  transition: transform 0.2s ease, box-shadow 0.2s ease, border-color 0.2s ease;
+  min-height: 540px; /* give more height per request */
+  position: relative;
+}
+.pricing-card:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.06);
+  border-color: rgba(0, 0, 0, 0.1);
+}
+.pricing-card .card-inner {
+  display: grid;
+  grid-template-rows: auto 1fr auto;
+  height: 100%;
+  padding: 1.25rem;
+}
+
+.plan-name {
+  font-size: 1rem;
+  font-weight: 600;
+  color: var(--foreground);
+}
+.price-row {
+  display: flex;
+  align-items: baseline;
+  gap: 0.25rem;
+  margin-top: 0.5rem;
+}
+.price {
+  font-size: 2rem;
+  font-weight: 600;
+  color: var(--foreground);
+  letter-spacing: -0.01em;
+}
+.period {
+  color: var(--secondary);
+  font-size: 0.9rem;
+}
+.plan-desc {
+  margin-top: 0.5rem;
+  color: var(--secondary);
+  font-size: 0.9rem;
+}
+
+.features {
+  list-style: none;
+  padding: 0;
+  margin: 2rem 0 1rem;
+  display: flex;
+  flex-direction: column;
+  gap: 0.6rem; /* modest whitespace between items */
+  align-items: flex-start;
+}
+.feature {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  color: var(--foreground);
+  font-size: 0.9rem;
+}
+.feature.heading{
+  font-weight: 600;
+  color: var(--foreground);
+  margin-bottom: 0.5rem;
+}
+.check {
+  width: 18px;
+  height: 18px;
+  display: grid;
+  place-items: center;
+  color: var(--grey);
+}
+
+.card-cta {
+  margin-top: 0.5rem;
+}
+.choose-btn {
+  width: 100%;
+  padding: 0.7rem 1rem;
+  border-radius: 8px;
+  border: 1px solid rgba(0, 0, 0, 0.08);
+  background: #111;
+  color: #fff;
+  font-family: var(--font-sans);
+  font-weight: 500;
+  cursor: pointer;
+  transition: filter 0.2s ease, transform 0.02s;
+}
+.choose-btn:active {
+  transform: translateY(1px);
+}
+.pricing-card.is-highlighted .choose-btn {
+  background: #0a0a0a;
+}
+
+/* Shimmering gradient stroke inspired by Firebase Studio */
+.pricing-card.shimmering::before,
+.pricing-card.shimmering::after{
+  content: "";
+  position: absolute; inset: 0; border-radius: 12px;
+  pointer-events: none;
+}
+/* Rotating conic gradient stroke (colors move around the border) */
+.pricing-card.shimmering::before{
+  padding: 1px; /* stroke thickness */
+  background: conic-gradient(
+    from 0deg,
+    #ffffff 0deg,
+    rgba(146, 51, 234, 0.3) 80deg,
+    rgba(34,211,238,.95) 180deg,
+    rgba(249, 116, 22, 0.3) 300deg,
+    #ffffff 360deg
+  );
+  -webkit-mask: linear-gradient(#000 0 0) content-box, linear-gradient(#000 0 0);
+  mask: linear-gradient(#000 0 0) content-box, linear-gradient(#000 0 0);
+  -webkit-mask-composite: xor; mask-composite: exclude;
+  animation: spin var(--speed,8s) linear infinite;
+  transform-origin: center;
+}
+/* Narrow bright wedge that adds a shimmering glint travelling around */
+.pricing-card.shimmering::after{
+  inset: -2px; /* slight overflow for glow */
+  border-radius: 14px;
+  background: conic-gradient(from 0deg, 
+    transparent 0turn, 
+    rgba(255,255,255,var(--intensity,.9)) .02turn,
+    transparent .05turn 1turn);
+  filter: blur(6px);
+  mix-blend-mode: screen;
+  animation: spin var(--speed,8s) linear infinite;
+  transform-origin: center;
+}
+
+@keyframes spin{ to{ transform: rotate(360deg); } }
+
+@keyframes shimmer-move{
+  0%   { --sx: -20%; --sy: 0%; }
+  25%  { --sx: 120%; --sy: 0%; }
+  50%  { --sx: 120%; --sy: 100%; }
+  75%  { --sx: -20%; --sy: 100%; }
+  100% { --sx: -20%; --sy: 0%; }
+}
+
+/* Override the conic shimmer for the SVG-based version: remove pseudo content */
+.pricing-card.shimmering::before,
+.pricing-card.shimmering::after{ content: none; }
+
+/* SVG dash animation border (linear movement around the container) */
+.shimmer-svg{ position:absolute; inset:0; z-index:2; pointer-events:none; }
+.shimmer-stroke{ fill:none; stroke-width:2; stroke-linecap:round; will-change: stroke-dashoffset; }
+.shimmer-stroke.purple{ stroke: var(--wave-purple-1, #9233ea57); animation: dash var(--speed,8s) linear infinite; }
+.shimmer-stroke.orange{ stroke: var(--wave-orange-1, #f974165e); animation: dash var(--speed,8s) linear infinite; }
+@keyframes dash{ to { stroke-dashoffset: -100; } }
+
+.ab-base{ fill:none; stroke:url(#ab-grad); stroke-width:1.5; opacity:.9; }
+.glint{ fill:none; stroke-width:1.5; stroke-linecap:round; filter: blur(.2px); mix-blend-mode: screen; }
+.glint.purple{ stroke: rgba(147,51,234,0.19); }
+.glint.orange{ stroke: rgba(249,115,22,0.19); }
+
+/* we now animate via requestAnimationFrame in JS for variable edge speeds */
+/* Keep equal size across breakpoints */
+@media (min-width: 720px) {
+  .pricing-section {
+    padding: 4rem 0;
+  }
+  .pricing-grid {
+    grid-template-columns: repeat(3, 1fr);
+  }
+  .pricing-card{ min-height: 520px; }
+  .pricing-card .card-inner {
+    padding: 1.5rem;
+  }
+  .price {
+    font-size: 2.25rem;
+  }
+}
+
+@media (min-width: 1100px) {
+  .pricing-title {
+    font-size: 2.5rem;
+  }
+  .pricing-grid {
+    gap: 1.25rem;
+  }
+}

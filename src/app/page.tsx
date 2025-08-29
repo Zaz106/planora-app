@@ -5,6 +5,9 @@ import ProblemAgitation from "@/components/sections/problem-agitation";
 import TiltedCardSection from "@/components/sections/tilted-card-section";
 import SocialProofSection from "@/components/sections/social-proof-section";
 import FeaturesSection from "@/components/sections/features-section";
+import PricingSection from "@/components/sections/pricing-section";
+import FaqSection from "@/components/sections/faq-section";
+import CtaSection from "@/components/sections/cta-section";
 
 export default function OverviewPage() {
   return (
@@ -16,6 +19,9 @@ export default function OverviewPage() {
       <TiltedCardSection />
       <SocialProofSection />
       <FeaturesSection />
+      <PricingSection />
+      <FaqSection />
+      <CtaSection />
     </main>
   );
 }
