@@ -1,6 +1,5 @@
 import type { Metadata } from "next";
 import { Geist, Geist_Mono } from "next/font/google";
-import Navigation from "@/components/layout/navigation";
 import "./globals.css";
 
 const geistSans = Geist({
@@ -15,7 +14,7 @@ const geistMono = Geist_Mono({
 
 export const metadata: Metadata = {
   title: "Planora",
-  description: "A platform for planning and organizing your projects",
+  description: "A daily learning platform, empowering users to learn and grow.",
 };
 
 export default function RootLayout({
