@@ -75,7 +75,7 @@ const FaqItemRow: React.FC<FaqItemRowProps> = ({ qa, index, open, onToggle }) =>
     const panel = panelRef.current;
     if (!panel) return;
 
-    // Cancel any in-flight animation to prevent snapping
+    // cancel in-flight animation
     animationRef.current?.cancel();
 
     const reduceMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
@@ -87,16 +87,15 @@ const FaqItemRow: React.FC<FaqItemRowProps> = ({ qa, index, open, onToggle }) =>
   const current = panel.style.height === 'auto' ? panel.scrollHeight : panel.getBoundingClientRect().height;
     const target = open ? panel.scrollHeight : 0;
 
-    // If already at target, nothing to do
+  // already at target
     if (Math.abs(current - target) < 1) {
       panel.style.height = open ? 'auto' : '0px';
       return;
     }
 
-    // Ensure we start from a concrete pixel value
+  // start from a pixel value
     panel.style.height = `${current}px`;
-    // Run WAAPI animation for smoother frame pacing
-  // Keep opacity at 1 during the height motion to avoid perceived vertical shift from fade timing
+  // animate height via WAAPI
   panel.style.opacity = '1';
   const anim = panel.animate(
       [ { height: `${current}px` }, { height: `${target}px` } ],

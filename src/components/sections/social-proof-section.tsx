@@ -61,8 +61,9 @@ const getInitials = (name: string): string => {
 
 // Individual testimonial card
 const TestimonialCard = ({ item }: { item: TestimonialItem }) => (
-  <article className="testimonial-card" role="listitem">
-    <div className="card-content">
+  <li className="testimonial-card">
+    <article>
+      <div className="card-content">
       <StarRating />
       <blockquote className="quote">
         "{item.quote}"
@@ -87,8 +88,9 @@ const TestimonialCard = ({ item }: { item: TestimonialItem }) => (
           {item.role && <p className="author-role">{item.role}</p>}
         </div>
       </footer>
-    </div>
-  </article>
+      </div>
+    </article>
+  </li>
 );
 
 const SocialProofSection = () => {
@@ -104,11 +106,11 @@ const SocialProofSection = () => {
           </p>
         </div>
         
-        <div className="testimonial-grid" role="list">
+  <ul className="testimonial-grid" role="list">
           {testimonials.map((item) => (
             <TestimonialCard key={item.id} item={item} />
           ))}
-        </div>
+  </ul>
       </div>
     </section>
   );

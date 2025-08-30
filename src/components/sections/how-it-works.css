@@ -26,7 +26,7 @@
 
 .how-it-works-title {
   font-family: var(--font-sans);
-  font-size: 3rem;
+  font-size: 3rem; /* align with features-section */
   font-weight: 500;
   color: var(--foreground);
   margin-bottom: 0.5rem;
@@ -36,7 +36,7 @@
 
 .how-it-works-subtitle {
   font-family: var(--font-sans);
-  font-size: 0.9rem;
+  font-size: 0.9rem; /* same as features-section subtitle */
   color: var(--secondary);
   line-height: 1.6;
   font-weight: 400;
