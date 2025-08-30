@@ -28,8 +28,8 @@ export const Navigation: React.FC = () => {
       
       <div className="nav-actions">
         <button className="nav-btn nav-btn--login">Login</button>
-        <Link href="/waiting-list">
-          <button className="nav-btn nav-btn--cta">Let's Talk</button>
+        <Link href="/waiting-list" aria-label="Join the waitlist">
+          <button className="nav-btn nav-btn--cta" type="button">Let's Talk</button>
         </Link>
       </div>
       

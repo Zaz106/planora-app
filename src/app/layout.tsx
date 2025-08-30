@@ -1,6 +1,7 @@
 import type { Metadata } from "next";
 import { Geist, Geist_Mono } from "next/font/google";
 import "./globals.css";
+import Footer from "@/components/layout/footer";
 
 const geistSans = Geist({
   variable: "--font-geist-sans",
@@ -14,7 +15,8 @@ const geistMono = Geist_Mono({
 
 export const metadata: Metadata = {
   title: "Planora",
-  description: "A daily learning platform, empowering users to learn and grow.",
+  description: "Build a lasting learning habit with daily micro‑lessons, streaks, and certificates.",
+  icons: { icon: "/favicon.ico" },
 };
 
 export default function RootLayout({
@@ -26,6 +28,7 @@ export default function RootLayout({
     <html lang="en">
       <body className={`${geistSans.variable} ${geistMono.variable}`}>
         {children}
+        <Footer />
       </body>
     </html>
   );

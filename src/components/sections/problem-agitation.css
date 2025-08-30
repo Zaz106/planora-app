@@ -30,7 +30,7 @@
 
 .problem-title {
   font-family: var(--font-sans);
-  font-size: 3rem;
+  font-size: 3rem; /* align with features-section */
   font-weight: 500;
   color: var(--foreground);
   margin-bottom: 0.1rem;

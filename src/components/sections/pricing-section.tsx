@@ -248,7 +248,8 @@ const PricingSection: React.FC = () => {
 
                 <div className="card-cta">
                   <button
-                    className="choose-btn"
+                    className="choose-btn btn-black"
+                    type="button"
                     aria-label={`Choose ${plan.name} plan`}
                   >
                     Choose plan
