@@ -8,6 +8,7 @@ import SocialProofSection from "@/components/sections/social-proof-section";
 import PricingSection from "@/components/sections/pricing-section";
 import FaqSection from "@/components/sections/faq-section";
 import CtaSection from "@/components/sections/cta-section";
+import Footer from "@/components/layout/footer";
 
 export default function OverviewPage() {
   return (
@@ -23,6 +24,7 @@ export default function OverviewPage() {
   <PricingSection />
   <FaqSection />
   <CtaSection />
+  <Footer />
     </main>
   );
 }

@@ -1,6 +1,6 @@
 // Firebase configuration and initialization
-import { initializeApp } from "firebase/app";
-import { getFirestore } from "firebase/firestore";
+import { initializeApp, type FirebaseApp } from "firebase/app";
+import { getFirestore, type Firestore } from "firebase/firestore";
 
 // Your web app's Firebase configuration from environment variables
 const firebaseConfig = {
@@ -23,8 +23,8 @@ if (missingFields.length > 0) {
 }
 
 // Initialize Firebase only if we have the required fields
-let app;
-let db: any;
+let app: FirebaseApp | undefined;
+let db: Firestore | null;
 
 if (missingFields.length === 0) {
   app = initializeApp(firebaseConfig);
@@ -35,4 +35,4 @@ if (missingFields.length === 0) {
   db = null;
 }
 
-export { db };
+export { app, db };
