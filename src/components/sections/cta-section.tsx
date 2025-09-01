@@ -17,7 +17,7 @@ const CtaSection: React.FC = () => {
             </p>
           </header>
           <div className="cta-actions">
-            <Link href="/waiting-list" className="cta-btn btn-black" aria-label="Get started">
+            <Link href="/signup" className="cta-btn btn-black" aria-label="Create your account">
               Get Started
             </Link>
           </div>

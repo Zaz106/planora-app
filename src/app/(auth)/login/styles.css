@@ -1,0 +1,128 @@
+/* Auth pages - consistent with hero/waitlist */
+.auth-hero {
+  position: relative;
+  min-height: 100vh;
+  background: #fff;
+}
+.auth-overlay {
+  position: absolute;
+  inset: 0;
+  display: grid;
+  place-items: center;
+  padding: 1rem;
+}
+
+.auth-card {
+  width: 100%;
+  max-width: 420px;
+  background: #fff;
+  border: 1px solid rgba(0, 0, 0, 0.06);
+  border-radius: 20px;
+  box-shadow: 0 2px 12px rgba(0, 0, 0, 0.06);
+  padding: 1.5rem;
+  display: grid;
+  gap: 1rem;
+  text-align: left;
+}
+.auth-header {
+  text-align: center;
+  display: grid;
+  gap: 0.5rem;
+}
+.auth-title {
+  font-family: var(--font-sans);
+  font-size: 2rem;
+  font-weight: 600;
+  color: var(--foreground);
+}
+.auth-subtitle {
+  color: var(--secondary);
+  font-size: 0.95rem;
+}
+
+.auth-error {
+  color: #b91c1c;
+  background: #fee2e2;
+  border: 1px solid #fecaca;
+  padding: 0.5rem 0.75rem;
+  border-radius: 8px;
+  font-size: 0.9rem;
+}
+
+.auth-form {
+  display: grid;
+  gap: 0.75rem;
+}
+.auth-label {
+  display: grid;
+  gap: 0.35rem;
+  font-size: 0.9rem;
+  color: var(--foreground);
+}
+.auth-input {
+  border: 1px solid rgba(0, 0, 0, 0.1);
+  border-radius: 10px;
+  padding: 0.75rem 0.9rem;
+  font-family: var(--font-sans);
+  font-size: 0.95rem;
+}
+.auth-input:focus {
+  outline: none;
+  border-color: rgba(0, 0, 0, 0.01);
+  box-shadow: 0 0 0 3px rgba(0, 0, 0, 0.01);
+}
+
+.auth-btn {
+  width: 100%;
+  border-radius: 999px;
+  padding: 0.8rem 1rem;
+  font-weight: 600;
+}
+
+.auth-divider {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  color: var(--secondary);
+  font-size: 0.85rem;
+}
+.auth-divider::before,
+.auth-divider::after {
+  content: "";
+  height: 1px;
+  flex: 1;
+  background: rgba(0, 0, 0, 0.08);
+}
+
+.auth-providers {
+  display: grid;
+  gap: 0.5rem;
+}
+.auth-provider {
+  width: 100%;
+  border-radius: 999px;
+  padding: 0.7rem 1rem;
+  font-weight: 600;
+  text-align: center;
+  border: 1px solid rgba(0, 0, 0, 0.1);
+}
+
+.auth-alt {
+  text-align: center;
+  font-size: 0.9rem;
+  color: var(--secondary);
+}
+.auth-link {
+  color: var(--foreground);
+  font-weight: 600;
+  text-decoration: underline;
+}
+
+@media (min-width: 768px) {
+  .auth-card {
+    padding: 2rem;
+  }
+  .auth-title {
+    font-size: 2.2rem;
+  }
+}

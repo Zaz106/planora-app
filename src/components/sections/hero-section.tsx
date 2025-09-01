@@ -36,11 +36,9 @@ const HeroSection: React.FC = () => {
               No more abandoned courses or guilt about unfinished tasks.
             </p>
             
-            {/* Mobile CTA Button - only visible when nav items are hidden */}
-            <Link href="/waiting-list">
-              <button className="hero-mobile-cta">
-                Get Started
-              </button>
+            {/* CTA Button - visible on all screen sizes */}
+            <Link href="/signup" className="hero-mobile-cta btn-black" aria-label="Create your account">
+              Get Started
             </Link>
           </div>
         </div>

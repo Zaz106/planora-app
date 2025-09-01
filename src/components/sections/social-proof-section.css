@@ -3,7 +3,7 @@
 /* Base Container */
 .social-proof-section {
   position: relative;
-  padding: 4rem 0; /* align with other sections */
+  padding: 10rem 0; /* align with other sections */
   background: var(--background);
   overflow: hidden;
 }
