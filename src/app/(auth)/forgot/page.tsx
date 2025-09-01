@@ -3,18 +3,30 @@ import React, { useState } from "react";
 import AnimatedSmoke from "@/components/ui/animated-smoke";
 import Logo from "@/components/ui/logo";
 import Link from "next/link";
+import { supabase } from "@/lib/supabase/config";
 import "../shared.css";
 
 export default function ForgotPasswordPage() {
   const [email, setEmail] = useState("");
   const [sent, setSent] = useState(false);
   const [loading, setLoading] = useState(false);
+  const [error, setError] = useState<string | null>(null);
 
   const onSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
     setLoading(true);
-    await new Promise(r => setTimeout(r, 700));
-    setSent(true);
+    setError(null);
+
+    const { error } = await supabase.auth.resetPasswordForEmail(email, {
+      redirectTo: `${window.location.origin}/reset-password`,
+    });
+
+    if (error) {
+      setError(error.message);
+    } else {
+      setSent(true);
+    }
+    
     setLoading(false);
   };
 
@@ -30,6 +42,8 @@ export default function ForgotPasswordPage() {
             <h1 id="forgot-title" className="auth-title">Reset your password</h1>
             <p id="forgot-subtitle" className="auth-subtitle">We'll email you a magic link to reset your password.</p>
           </header>
+
+          {error && <p className="auth-error" role="alert">{error}</p>}
 
           {sent ? (
             <p className="auth-error" role="status" style={{background:'#ecfccb', borderColor:'#d9f99d', color:'#3f6212'}}>

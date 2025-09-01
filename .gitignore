@@ -33,6 +33,7 @@ yarn-error.log*
 
 # env files (exclude all env files with secrets)
 .env*
+.env.local
 !.env.example
 
 # firestore rules (contains sensitive API keys)

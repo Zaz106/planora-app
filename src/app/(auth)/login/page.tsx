@@ -1,8 +1,12 @@
 "use client";
 import React, { useState } from "react";
+import { useRouter } from "next/navigation";
 import AnimatedSmoke from "@/components/ui/animated-smoke";
 import Logo from "@/components/ui/logo";
 import Link from "next/link";
+import { signInWithEmail, signInWithOAuth } from "@/lib/supabase/auth";
+import { supabase } from "@/lib/supabase/config";
+import { useAuth } from "@/lib/hooks/useAuth"; // Re-add for redirect functionality
 import "../shared.css";
 
 export default function LoginPage() {
@@ -10,18 +14,50 @@ export default function LoginPage() {
   const [password, setPassword] = useState("");
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState<string | null>(null);
+  const router = useRouter();
+  
+  // Initialize useAuth to handle redirects
+  useAuth();
 
   const onSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
     setLoading(true);
     setError(null);
-    // Design-only: mimic a short delay
-    await new Promise(r => setTimeout(r, 600));
+
+    const result = await signInWithEmail(email, password);
+    
+    if (result.success) {
+      // useAuth hook will handle the redirect automatically
+    } else {
+      setError(result.error || "Failed to sign in");
+    }
+    
     setLoading(false);
   };
 
-  const onGoogle = async () => { setLoading(true); await new Promise(r=>setTimeout(r,500)); setLoading(false); };
-  const onGithub = async () => { setLoading(true); await new Promise(r=>setTimeout(r,500)); setLoading(false); };
+  const onGoogle = async () => {
+    setLoading(true);
+    setError(null);
+    
+    const result = await signInWithOAuth("google");
+    if (!result.success) {
+      setError(result.error || "Failed to sign in with Google");
+    }
+    
+    setLoading(false);
+  };
+
+  const onGithub = async () => {
+    setLoading(true);
+    setError(null);
+    
+    const result = await signInWithOAuth("github");
+    if (!result.success) {
+      setError(result.error || "Failed to sign in with GitHub");
+    }
+    
+    setLoading(false);
+  };
 
   return (
     <section className="auth-hero">

@@ -1,0 +1,70 @@
+/* Bottom Navigation Styles */
+.bottom-nav {
+  position: fixed;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  background: white;
+  border-top: 1px solid #e5e7eb;
+  display: flex;
+  padding: 8px 0 max(8px, env(safe-area-inset-bottom));
+  z-index: 50;
+  backdrop-filter: blur(10px);
+  background: rgba(255, 255, 255, 0.95);
+}
+
+.nav-item {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 4px;
+  padding: 8px;
+  cursor: pointer;
+  transition: all 0.2s ease;
+  color: #9ca3af;
+}
+
+.nav-item.active {
+  color: #3b82f6;
+}
+
+.nav-item:hover:not(.active) {
+  color: #6b7280;
+}
+
+.nav-icon {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 24px;
+  height: 24px;
+}
+
+.nav-item span {
+  font-size: 0.7rem;
+  font-weight: 500;
+  text-align: center;
+}
+
+/* Active state with subtle background */
+.nav-item.active {
+  background: rgba(59, 130, 246, 0.1);
+  border-radius: 12px;
+  margin: 0 4px;
+}
+
+/* Smooth transitions */
+.nav-item.active .nav-icon svg {
+  transform: scale(1.05);
+}
+
+@media (min-width: 768px) {
+  .bottom-nav {
+    max-width: 400px;
+    margin: 0 auto;
+    left: 50%;
+    transform: translateX(-50%);
+    border-radius: 20px 20px 0 0;
+  }
+}

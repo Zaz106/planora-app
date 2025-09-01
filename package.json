@@ -10,6 +10,9 @@
     "export": "next build && next export"
   },
   "dependencies": {
+    "@supabase/auth-helpers-nextjs": "^0.10.0",
+    "@supabase/ssr": "^0.7.0",
+    "@supabase/supabase-js": "^2.56.1",
     "firebase": "^12.1.0",
     "motion": "^12.23.12",
     "next": "15.5.0",
