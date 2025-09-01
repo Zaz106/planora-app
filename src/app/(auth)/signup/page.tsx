@@ -1,8 +1,12 @@
 "use client";
 import React, { useState } from "react";
+import { useRouter } from "next/navigation";
 import AnimatedSmoke from "@/components/ui/animated-smoke";
 import Logo from "@/components/ui/logo";
 import Link from "next/link";
+import { signUpWithEmail, signInWithOAuth } from "@/lib/supabase/auth";
+import { supabase } from "@/lib/supabase/config";
+import { useAuth } from "@/lib/hooks/useAuth"; // Re-add for redirect functionality
 import "../shared.css";
 
 export default function SignupPage() {
@@ -10,6 +14,10 @@ export default function SignupPage() {
   const [password, setPassword] = useState("");
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState<string | null>(null);
+  const router = useRouter();
+  
+  // Initialize useAuth to handle redirects
+  useAuth();
   
   // Password requirements state
   const [requirements, setRequirements] = useState({
@@ -39,13 +47,56 @@ export default function SignupPage() {
     e.preventDefault();
     setLoading(true);
     setError(null);
-    // Design-only: mimic a short delay
-    await new Promise(r => setTimeout(r, 600));
+
+    // Check if all password requirements are met
+    const allRequirementsMet = Object.values(requirements).every(req => req);
+    if (!allRequirementsMet) {
+      setError("Please meet all password requirements");
+      setLoading(false);
+      return;
+    }
+
+    const result = await signUpWithEmail(email, password);
+    
+    if (result.success) {
+      if (result.needsConfirmation) {
+        // User needs to confirm email
+        setError(null);
+        // Show success message about email confirmation
+        alert('Please check your email and click the confirmation link to complete your signup.');
+      } else {
+        // User was immediately signed in - useAuth will handle redirect
+      }
+    } else {
+      setError(result.error || "Failed to create account");
+    }
+    
     setLoading(false);
   };
 
-  const onGoogle = async () => { setLoading(true); await new Promise(r=>setTimeout(r,500)); setLoading(false); };
-  const onGithub = async () => { setLoading(true); await new Promise(r=>setTimeout(r,500)); setLoading(false); };
+  const onGoogle = async () => {
+    setLoading(true);
+    setError(null);
+    
+    const result = await signInWithOAuth("google");
+    if (!result.success) {
+      setError(result.error || "Failed to sign in with Google");
+    }
+    
+    setLoading(false);
+  };
+
+  const onGithub = async () => {
+    setLoading(true);
+    setError(null);
+    
+    const result = await signInWithOAuth("github");
+    if (!result.success) {
+      setError(result.error || "Failed to sign in with GitHub");
+    }
+    
+    setLoading(false);
+  };
 
   return (
     <section className="auth-hero">
@@ -94,19 +145,63 @@ export default function SignupPage() {
               <div className="password-container">
                 <div className="password-requirements">
                   <div className={`requirement ${requirements.length ? 'met' : ''}`}>
-                    <span className="requirement-icon">{requirements.length ? '✓' : '✕'}</span>
+                    <span className="requirement-icon">
+                      {requirements.length ? (
+                        <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+                          <polyline points="20,6 9,17 4,12"></polyline>
+                        </svg>
+                      ) : (
+                        <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+                          <line x1="18" y1="6" x2="6" y2="18"></line>
+                          <line x1="6" y1="6" x2="18" y2="18"></line>
+                        </svg>
+                      )}
+                    </span>
                     At least 8 characters
                   </div>
                   <div className={`requirement ${requirements.uppercase ? 'met' : ''}`}>
-                    <span className="requirement-icon">{requirements.uppercase ? '✓' : '✕'}</span>
+                    <span className="requirement-icon">
+                      {requirements.uppercase ? (
+                        <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+                          <polyline points="20,6 9,17 4,12"></polyline>
+                        </svg>
+                      ) : (
+                        <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+                          <line x1="18" y1="6" x2="6" y2="18"></line>
+                          <line x1="6" y1="6" x2="18" y2="18"></line>
+                        </svg>
+                      )}
+                    </span>
                     One uppercase letter
                   </div>
                   <div className={`requirement ${requirements.lowercase ? 'met' : ''}`}>
-                    <span className="requirement-icon">{requirements.lowercase ? '✓' : '✕'}</span>
+                    <span className="requirement-icon">
+                      {requirements.lowercase ? (
+                        <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+                          <polyline points="20,6 9,17 4,12"></polyline>
+                        </svg>
+                      ) : (
+                        <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+                          <line x1="18" y1="6" x2="6" y2="18"></line>
+                          <line x1="6" y1="6" x2="18" y2="18"></line>
+                        </svg>
+                      )}
+                    </span>
                     One lowercase letter
                   </div>
                   <div className={`requirement ${requirements.number ? 'met' : ''}`}>
-                    <span className="requirement-icon">{requirements.number ? '✓' : '✕'}</span>
+                    <span className="requirement-icon">
+                      {requirements.number ? (
+                        <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+                          <polyline points="20,6 9,17 4,12"></polyline>
+                        </svg>
+                      ) : (
+                        <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+                          <line x1="18" y1="6" x2="6" y2="18"></line>
+                          <line x1="6" y1="6" x2="18" y2="18"></line>
+                        </svg>
+                      )}
+                    </span>
                     One number
                   </div>
                 </div>

@@ -1,0 +1,43 @@
+/* Calendar Page Styles */
+.app-page {
+  min-height: 100vh;
+  background: #f8fafc;
+  padding-bottom: 80px;
+}
+
+.app-header {
+  background: white;
+  padding: 16px 20px;
+  border-bottom: 1px solid #e5e7eb;
+  position: sticky;
+  top: 0;
+  z-index: 10;
+}
+
+.page-title {
+  font-size: 1.5rem;
+  font-weight: 700;
+  color: #1f2937;
+  margin: 0;
+}
+
+.page-content {
+  padding: 20px;
+  flex: 1;
+}
+
+.placeholder-content {
+  text-align: center;
+  padding: 60px 20px;
+}
+
+.placeholder-content h2 {
+  font-size: 1.8rem;
+  color: #6b7280;
+  margin-bottom: 12px;
+}
+
+.placeholder-content p {
+  color: #9ca3af;
+  font-size: 1rem;
+}
