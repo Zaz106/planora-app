@@ -58,8 +58,10 @@ export async function middleware(request: NextRequest) {
   if (!session && (
     pathname.startsWith('/app') || 
     pathname === '/home' || 
+    pathname === '/friends' || 
     pathname === '/calendar' || 
     pathname === '/lessons' || 
+    pathname === '/flashcards' ||
     pathname === '/profile' ||
     isEmailBasedRoute
   )) {
@@ -80,7 +82,7 @@ export async function middleware(request: NextRequest) {
   }
 
   // If user is signed in and accessing old routes (without email), redirect to user-specific routes
-  if (session && (pathname === '/home' || pathname === '/calendar' || pathname === '/lessons' || pathname === '/profile')) {
+  if (session && (pathname === '/home' || pathname === '/friends' || pathname === '/calendar' || pathname === '/lessons' || pathname === '/flashcards' || pathname === '/profile')) {
     const userEmail = session.user.email
     if (userEmail) {
       const encodedEmail = encodeURIComponent(userEmail)
