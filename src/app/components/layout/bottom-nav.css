@@ -1,70 +1,89 @@
-/* Bottom Navigation Styles */
 .bottom-nav {
   position: fixed;
   bottom: 0;
   left: 0;
   right: 0;
-  background: white;
-  border-top: 1px solid #e5e7eb;
-  display: flex;
-  padding: 8px 0 max(8px, env(safe-area-inset-bottom));
-  z-index: 50;
-  backdrop-filter: blur(10px);
   background: rgba(255, 255, 255, 0.95);
+  backdrop-filter: blur(20px);
+  border-top: 1px solid rgba(229, 229, 229, 0.3);
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+  padding: 8px 16px 16px 16px;
+  z-index: 1000;
+  box-shadow: 0 -4px 24px rgba(0, 0, 0, 0.08);
+  min-height: 64px;
 }
 
 .nav-item {
-  flex: 1;
   display: flex;
   flex-direction: column;
   align-items: center;
-  gap: 4px;
-  padding: 8px;
-  cursor: pointer;
-  transition: all 0.2s ease;
-  color: #9ca3af;
-}
-
-.nav-item.active {
-  color: #3b82f6;
-}
-
-.nav-item:hover:not(.active) {
-  color: #6b7280;
-}
-
-.nav-icon {
-  display: flex;
-  align-items: center;
   justify-content: center;
-  width: 24px;
-  height: 24px;
-}
-
-.nav-item span {
-  font-size: 0.7rem;
-  font-weight: 500;
-  text-align: center;
-}
-
-/* Active state with subtle background */
-.nav-item.active {
-  background: rgba(59, 130, 246, 0.1);
+  background: none;
+  border: none;
+  cursor: pointer;
+  transition: all 0.2s cubic-bezier(0.4, 0, 0.2, 1);
+  color: #94a3b8;
+  padding: 8px 12px;
   border-radius: 12px;
-  margin: 0 4px;
+  min-width: 48px;
+  min-height: 48px;
+  position: relative;
 }
 
-/* Smooth transitions */
-.nav-item.active .nav-icon svg {
-  transform: scale(1.05);
+.nav-item:hover {
+  background: rgba(148, 163, 184, 0.1);
+  transform: translateY(-1px);
 }
 
-@media (min-width: 768px) {
+.nav-item:active {
+  transform: translateY(0);
+}
+
+.nav-item.active {
+  color: #6b7280;
+  background: rgba(107, 114, 128, 0.1);
+}
+
+.nav-item svg {
+  transition: all 0.2s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.nav-item:hover svg {
+  transform: scale(1.1);
+}
+
+.nav-item.active svg {
+  stroke-width: 2.5;
+}
+
+/* Mobile optimization */
+@media (max-width: 400px) {
   .bottom-nav {
-    max-width: 400px;
+    padding: 6px 12px 12px 12px;
+    min-height: 60px;
+  }
+  
+  .nav-item {
+    padding: 6px 8px;
+    min-width: 44px;
+    min-height: 44px;
+  }
+  
+  .nav-item svg {
+    width: 22px;
+    height: 22px;
+  }
+}
+
+/* Tablet and larger screens */
+@media (min-width: 720px) {
+  .bottom-nav {
+    max-width: 720px;
     margin: 0 auto;
-    left: 50%;
-    transform: translateX(-50%);
     border-radius: 20px 20px 0 0;
+    border-left: 1px solid rgba(229, 229, 229, 0.3);
+    border-right: 1px solid rgba(229, 229, 229, 0.3);
   }
 }
